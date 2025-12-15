@@ -18,6 +18,6 @@ function solution(N:number):number {
 
 https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
 function solution(A: number[], K: number): number[] {
-    const rotation = K < A.length ? K : (K % A.length)
+    const rotation = K % A.length
     return rotation ? [...[...A].splice(A.length - rotation), ...[...A].splice(0, A.length - rotation)] : A
 }

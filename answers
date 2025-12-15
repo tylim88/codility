@@ -1,0 +1,23 @@
+https://app.codility.com/c/run/trainingNERE64-P2H/
+function solution(N:number):number {
+    const binary = N.toString(2);
+    const { count_0_max, count_1, count_0_current } = [...binary].reduce((acc, item) => {
+        const number = parseInt(item)
+
+        const count_1 = acc.count_1 + number
+
+        return {
+            count_1,
+            count_0_max: count_1 > 1 && count_1 !== acc.count_1 && acc.count_0_current > acc.count_0_max ? acc.count_0_current : acc.count_0_max,
+            count_0_current: number ? 0 : (acc.count_0_current + 1),
+        }
+    }, { count_1: 0, count_0_max: 0, count_0_current: 0 })
+
+    return count_0_max
+}
+
+https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
+function solution(A: number[], K: number): number[] {
+    const rotation = K < A.length ? K : (K % A.length)
+    return rotation ? [...[...A].splice(A.length - rotation), ...[...A].splice(0, A.length - rotation)] : A
+}
